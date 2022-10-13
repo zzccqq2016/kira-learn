@@ -12,6 +12,7 @@ public class LearnBlockingQueue<E> implements BlockingQueue<E> {
 
 
     /**
+     * <a href="https://blog.csdn.net/csfun1/article/details/122524692">...</a>
      * <a href="https://note.youdao.com/s/9NidRQLq">...</a>
      */
     public static void main(String[] args) {
