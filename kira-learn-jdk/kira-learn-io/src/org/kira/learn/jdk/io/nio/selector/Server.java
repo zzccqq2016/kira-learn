@@ -57,12 +57,8 @@ public class Server {
                     } else if (key.isReadable()) {
                         SocketChannel sChannel = (SocketChannel) key.channel();
                         System.out.println(readDataFromSocketChannel(sChannel));
-                        sChannel.close();
-                    } else if (key.isWritable()) {
-                        SocketChannel sChannel = (SocketChannel) key.channel();
-                        sChannel.close();
+                        sChannel.register(selector, SelectionKey.OP_READ);
                     }
-
                     keyIterator.remove();
                 }
             }
