@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.nio.ByteBuffer;
-import java.nio.channels.*;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -18,6 +21,7 @@ public class Server {
     /**
      * <a href="https://pdai.tech/md/java/io/java-io-nio.html">...</a>
      * <a href="https://blog.csdn.net/Luck_ZZ/article/details/95737802">...</a>
+     * <a href="https://blog.csdn.net/jiahao1186/article/details/102892438">...</a>
      */
     public static void main(String[] args) {
         try {
@@ -50,12 +54,11 @@ public class Server {
 
                         // 这个新连接主要用于从客户端读取数据
                         sChannel.register(selector, SelectionKey.OP_READ);
-
                     } else if (key.isReadable()) {
                         SocketChannel sChannel = (SocketChannel) key.channel();
                         System.out.println(readDataFromSocketChannel(sChannel));
-                        sChannel.register(selector,SelectionKey.OP_WRITE);
-                    }else if (key.isWritable()){
+                        sChannel.close();
+                    } else if (key.isWritable()) {
                         SocketChannel sChannel = (SocketChannel) key.channel();
                         sChannel.close();
                     }
@@ -68,8 +71,6 @@ public class Server {
         }
 
     }
-
-
 
 
     private static String readDataFromSocketChannel(SocketChannel sChannel) throws IOException {
