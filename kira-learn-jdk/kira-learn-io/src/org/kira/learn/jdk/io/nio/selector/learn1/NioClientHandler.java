@@ -1,11 +1,10 @@
-package org.kira.learn.jdk.io.nio.selector;
+package org.kira.learn.jdk.io.nio.selector.learn1;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Set;
@@ -38,13 +37,13 @@ public class NioClientHandler implements Runnable {
                  */
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
 
-                Iterator iterator = selectionKeys.iterator();
+                Iterator<SelectionKey> iterator = selectionKeys.iterator();
 
                 while (iterator.hasNext()) {
                     /**
                      * selectionKey实例
                      */
-                    SelectionKey selectionKey = (SelectionKey) iterator.next();
+                    SelectionKey selectionKey = iterator.next();
 
                     /**
                      * **移除Set中的当前selectionKey**

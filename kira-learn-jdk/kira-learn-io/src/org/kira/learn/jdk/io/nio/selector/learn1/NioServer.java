@@ -1,10 +1,9 @@
-package org.kira.learn.jdk.io.nio.selector;
+package org.kira.learn.jdk.io.nio.selector.learn1;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Set;
@@ -81,7 +80,6 @@ public class NioServer {
                  * selectionKey实例
                  */
                 SelectionKey selectionKey = (SelectionKey) iterator.next();
-
                 /**
                  * **移除Set中的当前selectionKey**
                  */

@@ -1,4 +1,4 @@
-package org.kira.learn.jdk.io.nio.selector;
+package org.kira.learn.jdk.io.nio.selector.learn1;
 
 import java.io.IOException;
 

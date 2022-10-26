@@ -1,4 +1,4 @@
-package org.kira.learn.jdk.io.nio.selector;
+package org.kira.learn.jdk.io.nio.selector.demo;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -75,10 +75,7 @@ public class Server {
         StringBuilder data = new StringBuilder();
 
         while (true) {
-
-            buffer.clear();
-            int n = sChannel.read(buffer);
-            if (n == -1) {
+            if (sChannel.read(buffer) <= 0) {
                 break;
             }
             buffer.flip();
