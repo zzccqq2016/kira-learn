@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * 递归回溯
+ *
  * @author: Zhang Chaoqing
  * Date: 2022/11/9 23:03
  */
@@ -49,25 +50,30 @@ public class MiGong {
     }
 
 
+    /**
+     * 1:墙 2:走过的路 3:走过但走不通  0:未走过的路
+     *
+     * @param map map
+     * @param i   i
+     * @param j   j
+     */
     public boolean setWay(int[][] map, int i, int j) {
-        printArray(map);
-        System.out.println("------------------------------");
+        //走到出口退出
         if (map[6][5] == 2) {
             return true;
         } else {
-            //如果当前这个点还没走过
+            //下一步未走过
             if (map[i][j] == 0) {
                 map[i][j] = 2;
-                if (down(map, i, j)) {
+                if (right(map, i, j)) {//右
                     return true;
-                } else if (left(map, i, j)) {
-                    return true;
-                } else if (right(map, i, j)) {
+                } else if (down(map, i, j)) {//左
                     return true;
                 } else if (up(map, i, j)) {
                     return true;
+                } else if (left(map, i, j)) {
+                    return true;
                 } else {
-                    //说明死点走不同
                     map[i][j] = 3;
                     return false;
                 }
@@ -76,6 +82,35 @@ public class MiGong {
             }
         }
     }
+
+
+//    public boolean setWay(int[][] map, int i, int j) {
+//        printArray(map);
+//        System.out.println("------------------------------");
+//        if (map[6][5] == 2) {
+//            return true;
+//        } else {
+//            //如果当前这个点还没走过
+//            if (map[i][j] == 0) {
+//                map[i][j] = 2;
+//                if (down(map, i, j)) {
+//                    return true;
+//                } else if (left(map, i, j)) {
+//                    return true;
+//                } else if (right(map, i, j)) {
+//                    return true;
+//                } else if (up(map, i, j)) {
+//                    return true;
+//                } else {
+//                    //说明死点走不同
+//                    map[i][j] = 3;
+//                    return false;
+//                }
+//            } else {
+//                return false;
+//            }
+//        }
+//    }
 
 
     public boolean right(int[][] map, int i, int j) {
