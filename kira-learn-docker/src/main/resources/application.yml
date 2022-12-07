@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: kira-docker
-server:
-  port: 9999
