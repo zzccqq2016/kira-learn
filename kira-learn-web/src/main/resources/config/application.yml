@@ -2,3 +2,10 @@ spring:
   application:
     name: kira-web
 
+  mvc:
+    pathmatch:
+      # 配置策略
+      matching-strategy: ant-path-matcher
+
+swagger:
+  enable: true
