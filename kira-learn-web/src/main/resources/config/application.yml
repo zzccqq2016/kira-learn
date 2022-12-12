@@ -6,6 +6,10 @@ spring:
     pathmatch:
       # 配置策略
       matching-strategy: ant-path-matcher
+  redis:
+    port: 6379
+    host: 101.35.251.170
+    password: root@hiekn
 
-swagger:
-  enable: true
+#swagger:
+#  enable: true

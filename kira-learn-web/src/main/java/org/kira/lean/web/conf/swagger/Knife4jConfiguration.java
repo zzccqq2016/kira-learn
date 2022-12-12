@@ -23,10 +23,9 @@ import java.util.function.Predicate;
  * @date: 2022/12/9 11:52
  */
 
-//@AutoConfiguration
 @Configuration
 @EnableConfigurationProperties(Swagger2Properties.class)
-@ConditionalOnProperty(prefix = "swagger", name = {"enable"}, havingValue = "true")
+@ConditionalOnProperty(prefix = "swagger", name = {"enable"}, havingValue = "true", matchIfMissing = true)
 @EnableSwagger2WebMvc
 public class Knife4jConfiguration {
 
@@ -43,14 +42,14 @@ public class Knife4jConfiguration {
 
 
     @Bean(value = "dockerBean")
-    public Docket dockerBean(@Value("${spring.application.name:default}") String group) {
+    public Docket dockerBean(@Value("${spring.application.name:default_group}") String group) {
         //指定使用Swagger2规范
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .groupName(group);
         return docket.select()
                 //swagger scan path
-                .apis(RequestHandlerSelectors.basePackage("org.kira.lean.web"))
+                .apis(DEFAULT_REQUEST_HANDLER)
                 .paths(PathSelectors.any())
                 .build();
     }
